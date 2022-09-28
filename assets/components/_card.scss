@@ -1,0 +1,75 @@
+.cardItem {
+  margin-top: 20px;
+  width: 210px;
+  background: f#ffffff;
+  border: 1px solid #f3f3f3;
+  border-radius: 40px;
+  padding: 20px 30px 34px 20px;
+  box-sizing: border-box;
+
+  .card__top {
+    position: relative;
+  }
+  .card__liked {
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    height: 32px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    img{
+      transition: .3s;
+    }
+    &.active img{
+      transform: translateY(-32px);
+    }
+  }
+
+  .cart__added{
+     height: 32px;
+    overflow: hidden; 
+    display: flex;
+    flex-direction: column;
+
+    img{
+      transition: .3s;
+    }
+    &.active img{
+      transform: translateY(-32px);
+    }
+  }
+  .card__img {
+    max-width: 100%;
+  }
+
+  .card__bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    img {
+      cursor: pointer;
+    }
+  }
+
+  .price {
+    font-weight: 500;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: #bdbdbd;
+    p {
+      margin: 0;
+      font-weight: 700;
+      font-size: 14px;
+      color: #000000;
+    }
+  }
+  h2 {
+    font-weight: 400;
+    font-size: 14px;
+    color: #000;
+    margin: 14px 0;
+  }
+}

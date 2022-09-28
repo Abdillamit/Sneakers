@@ -1,0 +1,43 @@
+.cart {
+    margin-top: 30px;
+  img {
+    width: 70px;
+    height: 70px;
+  }
+
+  &__info {
+    margin-left: 21px;
+    margin-right: 12px;
+  }
+
+  &__item {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    border: 1px solid #f3f3f3;
+    border-radius: 20px;
+    padding: 20px 20px;
+    box-sizing: border-box;
+  }
+
+  &__name {
+    font-weight: 400;
+    font-size: 14px;
+    color: #000000;
+    margin-bottom: 8px;
+  }
+
+  &__price {
+    font-weight: 700;
+    font-size: 14px;
+    color: #000000;
+  }
+  svg {
+    cursor: pointer;
+    transition: .3s;
+    &:hover {
+      opacity: .5;
+    }
+  }
+}
