@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="./css/index.css" />
   </head>
   <body>
-    
     <div class="wrapper">
       <header class="header">
         <div class="container">
@@ -66,17 +65,18 @@
               </svg>
             </div>
 
-            <div class="drawer__content cart"></div>
+            <div class="drawer__content cart">
+            </div>
             <div class="drawer__bottom">
               <div class="drawer__total">
                 <span>Итого: </span>
                 <div></div>
-                <span class="price">21 498 руб. </span>
+                <span class="price totalPrice">21 498 руб. </span>
               </div>
               <div class="drawer__total">
                 <span>Налог 5%:</span>
                 <div></div>
-                <span class="price">1074 руб. </span>
+                <span class="price zeket">1074 руб. </span>
               </div>
               <button class="drawer__btn">
                 Оформить заказ
@@ -125,7 +125,7 @@
                 />
               </svg>
 
-              <input type="text" placeholder="Поиск..." id="sechInput" />
+              <input class="catalog__search" type="text" placeholder="Поиск..." id="sechInput" />
             </label>
           </div>
 
@@ -134,6 +134,6 @@
       </section>
     </div>
 
-    <script src="./js/index.js"></script>
+    <script type="module" src="./js/index.js"></script>
   </body>
 </html>
