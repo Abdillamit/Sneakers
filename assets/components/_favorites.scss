@@ -1,0 +1,14 @@
+.favorites{
+    &__top{
+        display: flex;
+        margin-top: 42px;
+        align-items: center;
+    }
+
+    &__title{
+        font-weight: 700;
+        font-size: 32px;
+        color: #000000;
+        margin-left: 21px;
+    }
+}

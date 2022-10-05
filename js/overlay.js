@@ -8,7 +8,7 @@ const overlayFunc = () => {
       document.body.style.overflow = "hidden"
   });
 
-  closeOverlay.addEventListener("click", () => {
+  closeOverlay.addEventListener("click",( ) => {
     overlay.classList.remove("active");
     document.body.style.overflow = "visible";
   });

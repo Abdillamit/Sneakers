@@ -323,4 +323,16 @@ ul {
 }
 .cart svg:hover {
   opacity: 0.5;
+}
+
+.favorites__top {
+  display: flex;
+  margin-top: 42px;
+  align-items: center;
+}
+.favorites__title {
+  font-weight: 700;
+  font-size: 32px;
+  color: #000000;
+  margin-left: 21px;
 }/*# sourceMappingURL=index.css.map */
