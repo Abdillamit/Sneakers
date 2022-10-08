@@ -70,11 +70,14 @@ const renderCartItems = () => {
   }
 
   const deleteCartBtn = document.querySelectorAll(".cart__delete");
+  const cartItems = document.querySelectorAll(".cardItem");
   deleteCartBtn.forEach((cartDelete) => {
     cartDelete.addEventListener("click", () => {
       const itemId = cartDelete.parentElement.dataset.id;
       filterCart(itemId);
       renderCartItems();
+
+      cartItems[itemId].querySelector(".cart__added").classList.remove("active");
     });
   });
 };

@@ -10,3 +10,8 @@
 @import "./assets/components/card";
 @import "./assets/components/cart";
 @import "./assets/components/favorites";
+
+main{
+    transition: 0.5s;
+    overflow: hidden;
+}

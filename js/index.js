@@ -1,18 +1,30 @@
 import overlayFunc from "./overlay.js";
 const catalogContent = document.querySelector(".catalog__content");
 const searchInput = document.querySelector(".catalog__search");
-const animCards = () =>{
+const animCards = () => {
   gsap.from(".cardItem", {
-    duration:0.5,
-    opacity:0,
-    y:30,
-    delay:0.1,
-    stagger:0.2
+    duration: 0.5,
+    opacity: 0,
+    y: 30,
+    delay: 0.1,
+    stagger: 0.2,
   });
-}
+};
 
-
-export let cart = [];
+export let cart = [
+  {
+    id: 0,
+    name: "Мужские Кроссовки Nike Blazer Mid Suede",
+    imgURL: "./assets/img/sneaker-1.jpg",
+    price: 12999,
+  },
+  {
+    id: 1,
+    name: "Мужские Кроссовки Nike Air Max 270",
+    imgURL: "./assets/img/sneaker-2.jpg",
+    price: 8499,
+  },
+];
 import renderCartItems from "./renderCartItems.js";
 
 export const filterCart = (itemId) => {
@@ -91,12 +103,20 @@ const response = async () => {
                 </div>
               </div>
       `;
+
+  const cartItems = document.querySelectorAll(".cardItem");
+
+  cart.forEach(cartItem =>{
+    if(cartItem.id === item.id){
+      cartItems[item.id].querySelector(".cart__added").classList.add("active")
+    }
+  })
     });
     handleAdd();
     animCards();
-  }
-  
-  renderGoods(data)
+  };
+
+  renderGoods(data);
 
   searchInput.addEventListener("keypress", () => {
     catalogContent.innerHTML = "";
@@ -107,16 +127,13 @@ const response = async () => {
     );
 
     if (searchInput.value.trim() === "") {
-      renderGoods(data)
+      renderGoods(data);
     } else {
-      renderGoods(filterGoods)
+      renderGoods(filterGoods);
     }
   });
 
   renderCartItems();
-
-  
-  
 
   return data;
 };

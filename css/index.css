@@ -218,7 +218,7 @@ ul {
 .cardItem {
   margin-top: 20px;
   width: 210px;
-  background: f #ffffff;
+  background: #ffffff;
   border: 1px solid #f3f3f3;
   border-radius: 40px;
   padding: 20px 30px 34px 20px;
@@ -335,4 +335,9 @@ ul {
   font-size: 32px;
   color: #000000;
   margin-left: 21px;
+}
+
+main {
+  transition: 0.5s;
+  overflow: hidden;
 }/*# sourceMappingURL=index.css.map */
