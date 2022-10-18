@@ -63,6 +63,10 @@ ul {
   list-style: none;
 }
 
+.catalog__sceletion {
+  -webkit-animation: sceletion 1s alternate linear infinite;
+          animation: sceletion 1s alternate linear infinite;
+}
 .catalog__content {
   margin-top: 40px;
   display: flex;
@@ -98,6 +102,29 @@ ul {
   color: #c4c4c4;
 }
 
+@-webkit-keyframes sceletion {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes sceletion {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 .overlay {
   position: absolute;
   background: rgba(0, 0, 0, 0.5);

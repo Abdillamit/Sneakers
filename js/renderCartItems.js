@@ -1,10 +1,23 @@
-import { cart, filterCart } from "./index.js";
 const drawerContent = document.querySelector(".drawer__content");
 const drawerBottom = document.querySelector(".drawer__bottom");
 const totalPrice = drawerBottom.querySelector(".totalPrice");
 const zeket = drawerBottom.querySelector(".zeket");
+// const abu = drawerBottom.querySelector(".abu");
 
-const renderCartItems = () => {
+export const cart = [];
+
+export const  deleteCartItem = async (id) =>{
+  await fetch("http://localhost:3000/cart/" + id, {
+    method: "DELETE"
+  })
+}
+
+export const renderCartItems = async () => {
+
+  const response = await fetch("http://localhost:3000/cart/");
+  const data = await response.json();
+
+  data.forEach(item => cart.push(item))
   drawerContent.innerHTML = "";
 
   if (cart.length <= 0) {
@@ -66,6 +79,7 @@ const renderCartItems = () => {
     drawerBottom.classList.remove("active");
 
     totalPrice.innerText = `${cart.reduce((a, b) => a + b.price, 0)} руб.`;
+    // abu.innerText = `${cart.reduce((a, b) => a + b.price, 0)} руб.`;
     zeket.innerText = `${Math.round(cart.reduce((a, b) => a + b.price, 0) *0.05)} руб.`;
   }
 
@@ -74,12 +88,13 @@ const renderCartItems = () => {
   deleteCartBtn.forEach((cartDelete) => {
     cartDelete.addEventListener("click", () => {
       const itemId = cartDelete.parentElement.dataset.id;
-      filterCart(itemId);
+      deleteCartItem(itemId);
       renderCartItems();
 
       cartItems[itemId].querySelector(".cart__added").classList.remove("active");
     });
   });
 };
+
 
 export default renderCartItems;

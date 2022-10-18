@@ -1,6 +1,10 @@
 import overlayFunc from "./overlay.js";
 const catalogContent = document.querySelector(".catalog__content");
 const searchInput = document.querySelector(".catalog__search");
+import{ cart, deleteCartItem, renderCartItems} from "./renderCartItems.js";
+
+import { renderCartItemst } from "./renderSkeletonItems.js";
+
 const animCards = () => {
   gsap.from(".cardItem", {
     duration: 0.5,
@@ -11,29 +15,13 @@ const animCards = () => {
   });
 };
 
-export let cart = [
-  {
-    id: 0,
-    name: "Мужские Кроссовки Nike Blazer Mid Suede",
-    imgURL: "./assets/img/sneaker-1.jpg",
-    price: 12999,
-  },
-  {
-    id: 1,
-    name: "Мужские Кроссовки Nike Air Max 270",
-    imgURL: "./assets/img/sneaker-2.jpg",
-    price: 8499,
-  },
-];
-import renderCartItems from "./renderCartItems.js";
-
 export const filterCart = (itemId) => {
   cart = cart.filter((item) => +item.id !== +itemId);
 };
 
 const response = async () => {
   const result = await fetch(
-    "https://6331fdf03ea4956cfb6b0f3b.mockapi.io/goods"
+    "http://localhost:3000/goods"
   );
 
   const data = await result.json();
@@ -45,6 +33,7 @@ const response = async () => {
         const itemId =
           cartAdd.parentElement.parentElement.parentElement.dataset.id;
         cart.push(data.find((item) => +item.id === +itemId));
+
         renderCartItems();
       });
     });
@@ -54,7 +43,7 @@ const response = async () => {
       cartDelete.addEventListener("click", () => {
         const itemId =
           cartDelete.parentElement.parentElement.parentElement.dataset.id;
-        filterCart(itemId);
+        deleteCartItem(itemId);
         renderCartItems();
       });
     });
@@ -75,48 +64,56 @@ const response = async () => {
     });
   };
   const renderGoods = (abdillamit) => {
-    catalogContent.innerHTML = "";
-    abdillamit.forEach((item) => {
-      catalogContent.innerHTML += `
-      <div data-id="${item.id}" class="cardItem">
-                <div class="card__top">
-                  <div class="card__liked">
-                    <img src="./assets/img/unliked.svg" alt="liked-icon" />
-                    <img src="./assets/img/liked.svg" alt="liked-icon" />
-                  </div>
-                  <img
-                    class="card__img"
-                    src="${item.imgURL}"
-                    alt="sneaker-img"
-                  />
-                </div>
-                <h2>${item.name}</h2>
-                <div class="card__bottom">
-                  <div class="price">
-                    Цена:
-                    <p>${item.price} руб.</p>
-                  </div>
-                  <div class="cart__added">
-                    <img class="addCartItem" src="./assets/img/add.svg" alt="add-icon" />
-                    <img class="deleteCartItem" src="./assets/img/added.svg" alt="added-icon" />
-                  </div>
-                </div>
-              </div>
-      `;
+    renderCartItemst();
 
-  const cartItems = document.querySelectorAll(".cardItem");
+    setTimeout(() =>{
+      catalogContent.innerHTML = "";
+      abdillamit.forEach((item) => {
+        catalogContent.innerHTML += `
+        <div data-id="${item.id}" class="cardItem">
+                  <div class="card__top">
+                    <div class="card__liked">
+                      <img src="./assets/img/unliked.svg" alt="liked-icon" />
+                      <img src="./assets/img/liked.svg" alt="liked-icon" />
+                    </div>
+                    <img
+                      class="card__img"
+                      src="${item.imgURL}"
+                      alt="sneaker-img"
+                    />
+                  </div>
+                  <h2>${item.name}</h2>
+                  <div class="card__bottom">
+                    <div class="price">
+                      Цена:
+                      <p>${item.price} руб.</p>
+                    </div>
+                    <div class="cart__added">
+                      <img class="addCartItem" src="./assets/img/add.svg" alt="add-icon" />
+                      <img class="deleteCartItem" src="./assets/img/added.svg" alt="added-icon" />
+                    </div>
+                  </div>
+                </div>
+        `;
+  
+        const cartItems = document.querySelectorAll(".cardItem");
+  
+        cart.forEach((cartItem) => {
+          if (cartItem.id === item.id) {
+            cartItems[item.id]
+              .querySelector(".cart__added")
+              .classList.add("active");
+          }
+        });
+      });
+      handleAdd();
+      animCards();
+    },2000)
 
-  cart.forEach(cartItem =>{
-    if(cartItem.id === item.id){
-      cartItems[item.id].querySelector(".cart__added").classList.add("active")
-    }
-  })
-    });
-    handleAdd();
-    animCards();
   };
 
   renderGoods(data);
+  renderCartItemst();
 
   searchInput.addEventListener("keypress", () => {
     catalogContent.innerHTML = "";
@@ -124,7 +121,7 @@ const response = async () => {
       element.name
         .toLowerCase()
         .includes(searchInput.value.trim().toLowerCase())
-    );
+    );              
 
     if (searchInput.value.trim() === "") {
       renderGoods(data);

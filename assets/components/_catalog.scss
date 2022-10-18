@@ -1,4 +1,7 @@
 .catalog {
+  &__sceletion{
+    animation: sceletion 1s alternate linear infinite;
+  }
   &__content{
     margin-top: 40px;
     display: flex;
@@ -33,5 +36,18 @@
         color: #c4c4c4;
       }
     }
+  }
+}
+
+
+@keyframes sceletion{
+  0%{
+    opacity: 1;
+  }
+  50%{
+    opacity: 0.5;
+  }
+  100%{
+    opacity: 1;
   }
 }
